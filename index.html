@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Dashboard | Developer Space</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="custom-cursor-dot" id="custom-cursor-dot"></div>
+
+    <!-- Theme Toggle Fixed at Top Right -->
+    <button id="theme-toggle-btn" aria-label="Toggle Theme" class="fixed-theme-btn">
+        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    </button>
+
+    <!-- Hero Section (Full Height) -->
+    <header class="hero-section">
+        <div class="hero-content blur-reveal">
+            <h1 id="time-display">00:00</h1>
+            <span id="date-display">Date</span>
+            <h2 id="greeting-text">
+                <span id="greeting-time">Good Morning,</span><br/>
+                <span id="user-name" contenteditable="true" spellcheck="false">Developer</span>
+            </h2>
+            <div class="scroll-indicator">
+                <span>Scroll to explore</span>
+                <div class="mouse"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="portfolio-container">
+        
+        <!-- FOCUS TIMER -->
+        <section class="portfolio-section blur-reveal">
+            <div class="card timer-card">
+                <div class="card-header">
+                    <h3>Focus Timer</h3>
+                    <div class="timer-settings">
+                        <label for="pomodoro-time">Pomodoro (min):</label>
+                        <input type="number" id="pomodoro-time" value="25" min="1" max="120">
+                    </div>
+                </div>
+                
+                <div class="timer-display-container">
+                    <div class="timer-circle">
+                        <svg class="progress-ring" width="200" height="200">
+                            <circle class="progress-ring__circle" stroke="currentColor" stroke-width="6" fill="transparent" r="90" cx="100" cy="100"/>
+                        </svg>
+                        <h2 id="timer-display">25:00</h2>
+                    </div>
+                </div>
+
+                <div class="timer-controls">
+                    <button id="timer-start" class="btn btn-primary">Start</button>
+                    <button id="timer-stop" class="btn btn-secondary">Stop</button>
+                    <button id="timer-reset" class="btn btn-outline">Reset</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TO-DO LIST -->
+        <section class="portfolio-section blur-reveal">
+            <div class="card todo-card">
+                <div class="card-header">
+                    <h3>To-Do List</h3>
+                    <span id="task-count">0 tasks</span>
+                </div>
+                
+                <form id="todo-form" class="todo-form">
+                    <input type="text" id="todo-input" placeholder="What needs to be done?" required>
+                    <button type="submit" class="btn btn-primary btn-icon" aria-label="Add Task">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                </form>
+
+                <div class="todo-list-container">
+                    <ul id="todo-list" class="todo-list">
+                        <!-- Tasks will be injected here via JS -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUICK LINKS -->
+        <section class="portfolio-section blur-reveal">
+            <div class="card links-card">
+                <div class="card-header">
+                    <h3>Quick Links</h3>
+                </div>
+
+                <div id="quick-links-container" class="quick-links-grid">
+                    <!-- Links will be injected here via JS -->
+                </div>
+
+                <form id="link-form" class="link-form">
+                    <h4>Add New Link</h4>
+                    <div class="form-group">
+                        <input type="text" id="link-title" placeholder="Title (e.g. GitHub)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="url" id="link-url" placeholder="URL (https://...)" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full">Save Link</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,666 @@
+/* 
+  Life Dashboard Styles 
+  Modern, Clean, Developer Portfolio Style 
+*/
+
+:root {
+    /* 
+       Theme: Yuki Suou (Dark Mode)
+       Aesthetic: Elegant, Cool, Deep Blue & Purple Night
+    */
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+    --card-bg: rgba(30, 41, 59, 0.6); /* Semi-transparent Slate */
+    --card-border: rgba(255, 255, 255, 0.1);
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    
+    --accent-color: #8b5cf6; /* Elegant Purple */
+    --accent-hover: #7c3aed;
+    
+    --danger-color: #f43f5e;
+    --danger-hover: #e11d48;
+    
+    --success-color: #10b981;
+    
+    --shadow-md: 0 4px 30px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-full: 9999px;
+
+    --transition-speed: 0.3s;
+    --backdrop-blur: blur(12px);
+}
+
+[data-theme="light"] {
+    /* 
+       Theme: Mahiru Shiina (Light Mode)
+       Aesthetic: Angelic, Warm, Soft Morning Light, Pastel Gold/Peach
+    */
+    --bg-gradient: linear-gradient(135deg, #fff1f2 0%, #fef3c7 50%, #f0fdf4 100%);
+    --card-bg: rgba(255, 255, 255, 0.65); /* Semi-transparent White */
+    --card-border: rgba(255, 255, 255, 0.5);
+    
+    --text-primary: #431407; /* Warm Dark Brown */
+    --text-secondary: #78350f; 
+    
+    --accent-color: #f59e0b; /* Warm Honey Gold */
+    --accent-hover: #d97706;
+    
+    --shadow-md: 0 4px 30px rgba(245, 158, 11, 0.1);
+    --shadow-lg: 0 8px 32px rgba(245, 158, 11, 0.15);
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.5;
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+    min-height: 100vh;
+}
+
+/* Fixed Theme Button */
+.fixed-theme-btn {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    cursor: none; /* using custom cursor */
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-speed);
+}
+.fixed-theme-btn:hover {
+    transform: scale(1.1);
+    border-color: var(--accent-color);
+}
+
+/* Portfolio Layout Container */
+.portfolio-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem; /* large spacing for portfolio feel */
+    padding-bottom: 10rem;
+}
+
+/* Cards (override padding and ensure max-width for aesthetic) */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 2.5rem;
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, backdrop-filter var(--transition-speed) ease;
+    width: 100%;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 1rem;
+}
+
+.card-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 2rem;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#time-display {
+    font-size: 5rem; /* much larger for hero */
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#date-display {
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+#greeting-text {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    line-height: 1.2;
+}
+
+#user-name {
+    color: var(--accent-color);
+    outline: none;
+    border-bottom: 2px dashed transparent;
+    transition: border-color var(--transition-speed);
+    cursor: none;
+}
+
+#user-name:hover, #user-name:focus {
+    border-bottom-color: var(--accent-color);
+}
+
+/* Scroll Indicator in Hero */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+    animation: bounce 2s infinite;
+}
+
+.mouse {
+    width: 24px;
+    height: 36px;
+    border: 2px solid var(--text-secondary);
+    border-radius: 12px;
+    position: relative;
+}
+.mouse::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 8px;
+    background: var(--text-secondary);
+    border-radius: 2px;
+    animation: scroll 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+    40% { transform: translateY(-10px) translateX(-50%); }
+    60% { transform: translateY(-5px) translateX(-50%); }
+}
+
+@keyframes scroll {
+    0% { transform: translate(-50%, 0); opacity: 1; }
+    100% { transform: translate(-50%, 12px); opacity: 0; }
+}
+
+/* Responsive adjustments for portfolio */
+@media (max-width: 768px) {
+    .portfolio-container {
+        gap: 2rem;
+    }
+    .card {
+        padding: 1.5rem;
+    }
+    #time-display {
+        font-size: 3.5rem;
+    }
+    #greeting-text {
+        font-size: 1.75rem;
+    }
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    border: none;
+    outline: none;
+    font-family: inherit;
+}
+
+.btn-icon {
+    padding: 0.5rem;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: var(--danger-hover);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--card-border);
+}
+
+/* Forms & Inputs */
+input[type="text"],
+input[type="url"],
+input[type="number"] {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--bg-color);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 0.875rem;
+    transition: border-color var(--transition-speed);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* Focus Timer */
+.timer-settings {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.timer-settings input {
+    width: 60px;
+    padding: 0.25rem 0.5rem;
+}
+
+.timer-display-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.timer-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+}
+
+.progress-ring__circle {
+    transition: stroke-dashoffset 1s linear;
+    stroke: var(--accent-color);
+}
+
+#timer-display {
+    font-size: 3rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    z-index: 10;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+/* To-Do List */
+#task-count {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    background-color: var(--bg-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-full);
+}
+
+.todo-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.todo-list-container {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+/* Custom Scrollbar for container */
+.todo-list-container::-webkit-scrollbar {
+    width: 6px;
+}
+.todo-list-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.todo-list-container::-webkit-scrollbar-thumb {
+    background-color: var(--card-border);
+    border-radius: var(--radius-full);
+}
+
+.todo-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background-color: var(--bg-color);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-speed);
+}
+
+.todo-item:hover {
+    border-color: var(--accent-color);
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+.todo-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    overflow: hidden;
+}
+
+.todo-checkbox {
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--card-border);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-speed);
+    flex-shrink: 0;
+}
+
+.todo-checkbox:checked {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.todo-checkbox:checked::after {
+    content: '';
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+}
+
+.todo-text {
+    font-size: 0.9375rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.todo-actions {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.btn-icon-sm {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: color var(--transition-speed), background-color var(--transition-speed);
+}
+
+.btn-icon-sm:hover {
+    color: var(--danger-color);
+    background-color: var(--card-bg);
+}
+
+.btn-icon-sm.edit-btn:hover {
+    color: var(--accent-color);
+}
+
+/* Quick Links */
+.quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.link-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all var(--transition-speed);
+    position: relative;
+    group: link-group;
+}
+
+.link-item:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.link-icon {
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--card-bg);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    color: var(--accent-color);
+}
+
+.link-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.delete-link-btn {
+    position: absolute;
+    top: -0.25rem;
+    right: -0.25rem;
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity var(--transition-speed);
+}
+
+.link-item:hover .delete-link-btn {
+    opacity: 1;
+}
+
+.link-form h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.form-group {
+    margin-bottom: 0.5rem;
+}
+
+/* =========================================
+   Interactive Enhancements (Animations & Cursor)
+========================================= */
+
+/* Hide default cursor to use custom cursor */
+@media (pointer: fine) {
+    body {
+        cursor: none;
+    }
+    a, button, input, [contenteditable="true"], .todo-checkbox, .delete-link-btn, .btn-icon-sm {
+        cursor: none;
+    }
+}
+
+.custom-cursor, .custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.custom-cursor {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--accent-color);
+}
+
+.custom-cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+}
+
+.custom-cursor.hovering {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(139, 92, 246, 0.2); /* Soft purple tint */
+    border-color: transparent;
+}
+[data-theme="light"] .custom-cursor.hovering {
+    background-color: rgba(245, 158, 11, 0.2); /* Soft gold tint */
+}
+
+/* Scroll Blur-Reveal Animations */
+.blur-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(12px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+}
+
+.blur-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* Override previous fadeDown/fadeUp since we use IntersectionObserver now */
+.card {
+    transform-style: preserve-3d;
+}
+
+
